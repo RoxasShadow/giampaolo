@@ -1,0 +1,46 @@
+#! /usr/bin/env ruby
+##########################################################################
+#    Giovanni Capuano <webmaster@giovannicapuano.net>
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+##########################################################################
+require 'giampaolo'
+require 'giampaolo/version'
+require 'open-uri'
+require 'fileutils'
+
+if ARGV.empty? || ARGV[0] == 'help' || ARGV[0] == '--help' || ARGV[0] == '-h' || ARGV[0] == '--usage'
+	abort "giampaolo [opt] [command]
+\t
+\tadd\tMIRROR_URI\tTARGET_FOLDER\tSCRIPTS
+\tappend\tMIRROR_URI\tTARGET_FILE\tSCRIPTS"
+end
+
+giampaolo = Giampaolo.new
+abort "I don't know what I have to do :'(" if ARGV.length <= 4
+
+action = ARGV[0]
+giampaolo.mirror = ARGV[1]; abort 'Unavailable mirror.' unless giampaolo.valid_mirror?
+target = ARGV[2]
+scripts = ARGV[3..-1]
+
+case action
+	when 'add'
+		results = giampaolo.add(scripts, target)
+		puts "Sorry, but I can't find the follow scripts: #{results.join(', ')} :(" unless results.empty?
+	when 'append'
+		results = giampaolo.add(scripts, target)
+		puts "Sorry, but I can't find the follow scripts: #{results.join(', ')} :(" unless results.empty?
+	else
+		abort "Sorry, but I don't know what I have to do :("
+end

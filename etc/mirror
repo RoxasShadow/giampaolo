@@ -1,0 +1,5 @@
+'jquery'             =>    'http://code.jquery.com/jquery-1.7.2.min.js'
+'jquery.scrollTo'    =>    'http://demos.flesler.com/jquery/scrollTo/js/jquery.scrollTo-min.js'
+'jquery-cookie'      =>    'https://github.com/carhartl/jquery-cookie/blob/master/jquery.cookie.js'
+'jquery.dateFormat'  =>    'https://github.com/phstc/jquery-dateFormat/blob/master/jquery.dateFormat-1.0.js'
+'prototype'          =>    'http://prototypejs.org/assets/2009/8/31/prototype.js'
